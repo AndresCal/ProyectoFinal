@@ -1,5 +1,4 @@
 #include "scene_particle.h"
-
 #include "cgmath.h"
 #include "ifile.h"
 #include "mat3.h"
@@ -112,15 +111,16 @@ void scene_particle::mainLoop()
 	proj_matrix[3][2] = -((2 * farr * nearr) / (farr - nearr));
 
 	// MVP Matrix
-	GLuint model_location = glGetUniformLocation(shaderID, "modelMatrix");
+	GLuint model_location = glGetUniformLocation(shaderID, "mVista");
 	glUniformMatrix4fv(model_location, 1, GL_FALSE, &view_matrix[0][0]);
 
-	GLuint normal_location = glGetUniformLocation(shaderID, "normalMatrix");
-	glUniformMatrix3fv(normal_location, 1, GL_FALSE, &proj_matrix[0][0]);
+	GLuint normal_location = glGetUniformLocation(shaderID, "mProyeccion");
+	glUniformMatrix4fv(normal_location, 1, GL_FALSE, &proj_matrix[0][0]);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texID);
 
+	//Llamdas a particle System
 	particleSystem.update();
 	particleSystem.draw(shaderID);
 

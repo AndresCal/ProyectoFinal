@@ -23,7 +23,6 @@ void Particle::init()
 	velocity.z = 0.0;
 
 	alpha = 0;
-
 	ttl = 20;
 	a = 9.8;
 }
@@ -38,14 +37,15 @@ void Particle::update()
 
 void Particle::draw(GLuint shaderID)
 {
-	// Model Matrix
+	// Model Matrix solo traslación
+
 	cgmath::vec4 rotzx(1.0f, 0.0f, 0.0f, 0.0f);
 	cgmath::vec4 rotzy(0.0f, 1.0f, 0.0f, 0.0f);
 	cgmath::vec4 rotzz(0.0f, 0.0f, 1.0f, 0.0f);
 	cgmath::vec4 rotzw(positionsP.x, positionsP.y, positionsP.z, 1.0f);
 	cgmath::mat4 model_matrix(rotzx, rotzy, rotzz, rotzw);
 
-	GLuint model_location = glGetUniformLocation(shaderID, "modelMatrix");
+	GLuint model_location = glGetUniformLocation(shaderID, "mModelo");
 	glUniformMatrix4fv(model_location, 1, GL_FALSE, &model_matrix[0][0]);
 
 	q.Draw();

@@ -6,7 +6,7 @@
 
 void ParticleSystem::init()
 {
-
+	p.init();
 }
 
 //Vamos a tener un for desde 0 a size-1

@@ -12,5 +12,5 @@ uniform mat4 mProyeccion;
 void main()
 {
 	InterpolatedTexCoord = VertexTexCoord;
-	gl_Position = mProyeccion * mVista * mModelo * vec4(VertexPosition, 1.0f); //proyecion vista modelo
+	gl_Position = mProyeccion * mVista * mModelo * vec4(VertexPosition, 1.0f);
 }
