@@ -81,7 +81,7 @@ void scene_particle::init()
 
 void scene_particle::awake()
 {
-	glClearColor(1.0f, 1.0f, 0.5f, 1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void scene_particle::sleep()

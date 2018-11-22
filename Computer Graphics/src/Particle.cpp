@@ -13,23 +13,32 @@
 
 void Particle::init()
 {
-	//Inicializar las particulas. 
-	positionsP.x = 1.0;
-	positionsP.y = 1.0;
+	//cgmath::vec3 positions, cgmath::vec3 velocity, float ttl
+	q.init(); //Mandar a llamar init en particula 
+
+	 //myPositionsP = positions;
+	 //myVelocity = velocity;
+	 //myTtl = ttl;
+
+	positionsP.x = 0.0;
+	positionsP.y = 5.0;
 	positionsP.z = 0.0;
 
-	velocity.x = 1.0;
-	velocity.y = 1.0;
+	velocity.x = 0.0;
+	velocity.y = 0.0;
 	velocity.z = 0.0;
+
+	a.x = 0;
+	a.y = -0.981;
+	a.z = 0;
 
 	alpha = 0;
 	ttl = 20;
-	a = 9.8;
 }
 
 void Particle::update()
 {
-	velocity = velocity * a * time::delta_time().count(); //Velocidad
+	velocity = velocity + a * time::delta_time().count(); //Velocidad
 	positionsP = positionsP + velocity * time::delta_time().count(); //Posicion
 	ttl = ttl - time::delta_time().count();
 

@@ -6,6 +6,7 @@ class ParticleSystem
 {
 public:
 	Particle p;
+	std::vector<Particle> particles;
 
 	void init();
 	void update();

@@ -10,9 +10,10 @@ public:
 	Quad q;
 	cgmath::vec3 positionsP;
 	cgmath::vec3 velocity;
+	cgmath::vec3 a;
 	float ttl;
 	float alpha;
-	double a;
+
 
 	void init();
 	void update();
