@@ -3,12 +3,23 @@
 #include "ParticleSystem.h"
 #include "Particle.h"
 
+
+
+
+
 class scene_particle : public scene
 {
 	public:
-		 
 		Particle p;
 		ParticleSystem particleSystem;
+
+		cgmath::vec3 camPosition;
+		
+		cgmath::vec3 minPosition, maxPosition;
+		cgmath::vec3 minVelocidad, maxVelocidad;
+		float minTtl, maxTtl;
+		float minAlpha, maxAlpha;
+
 		void init();
 		void awake();
 		void sleep();

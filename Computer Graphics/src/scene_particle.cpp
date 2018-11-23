@@ -10,18 +10,43 @@
 #include <IL/il.h>
 #include <vector>
 #include "ParticleSystem.h"
-#include "Particle.h"	GLuint texID;
+#include "Particle.h"	
+
+
+
 
 void scene_particle::init()
 {
 	//Blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	aspect = 1.0f;
 
+	//Para que no haya problema en mi camara
+	camPosition.z = 10;
+
+	//Posicion
+	minPosition.x = -3.0;
+	maxPosition.x = 3.0;
+	minPosition.y = 4.0;
+	maxPosition.y = 6.0;
+	//Velocidad
+	minVelocidad.x = 0.0;
+	maxVelocidad.x = 1.0;
+	minVelocidad.y = 0.0;
+	maxVelocidad.y = 1.0;
+	//Ttl
+	minTtl = 10;
+	maxTtl = 20;
+	//Alpha
+	minAlpha = 0;
+	maxAlpha = 1;
+
 	//Inicalizar Sistema de Particulas
-	particleSystem.init();
+	particleSystem.init(minPosition, maxPosition, minVelocidad,maxVelocidad,
+		minTtl,maxTtl,minAlpha,maxAlpha);
+
+
 
 	// Load Texture
 	ILuint imageID;
@@ -36,7 +61,8 @@ void scene_particle::init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_TYPE), ilGetData());
+	glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT),
+		0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_TYPE), ilGetData());
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	ilBindImage(0);
@@ -95,7 +121,10 @@ void scene_particle::mainLoop()
 	glUseProgram(shaderID);
 	// View Matrix
 	cgmath::mat4 view_matrix(1.0f);
-	view_matrix[3][2] = 10.0f;
+	//view_matrix[3][2] = 10.0f;
+	view_matrix[3][0] = camPosition.x;
+	view_matrix[3][1] = camPosition.y;
+	view_matrix[3][2] = camPosition.z;
 	view_matrix = cgmath::mat4::inverse(view_matrix);
 
 	// Projection Matrix
@@ -122,7 +151,7 @@ void scene_particle::mainLoop()
 
 	//Llamdas a particle System
 	particleSystem.update();
-	particleSystem.draw(shaderID);
+	particleSystem.draw(shaderID, camPosition);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
