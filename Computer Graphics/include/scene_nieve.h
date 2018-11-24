@@ -1,11 +1,9 @@
 #pragma once
-
-
 #include "scene.h"
 #include "ParticleSystem.h"
 #include "Particle.h"
 
-class scene_fuego : public scene
+class scene_nieve : public scene
 {
 public:
 	Particle p;
@@ -36,4 +34,5 @@ private:
 
 	float aspect;
 };
+
 

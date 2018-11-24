@@ -9,10 +9,10 @@ void Quad::init()
 {
 	std::vector<cgmath::vec3> positionsID;// = { 1, 2, 0, 3 }; //indices para crear mi cuadrado GL_TRIANGLE_STRIP
 	std::vector<cgmath::vec2> textcoordsID;
-	positionsID.push_back(cgmath::vec3(1, 0, 0));
-	positionsID.push_back(cgmath::vec3(1, 1, 0));
+	positionsID.push_back(cgmath::vec3(0.7, 0, 0));
+	positionsID.push_back(cgmath::vec3(0.7, 0.7, 0));
 	positionsID.push_back(cgmath::vec3(0, 0, 0));
-	positionsID.push_back(cgmath::vec3(0, 1, 0));
+	positionsID.push_back(cgmath::vec3(0, 0.7, 0));
 
 	textcoordsID.push_back(cgmath::vec2(1, 0));
 	textcoordsID.push_back(cgmath::vec2(1, 1));

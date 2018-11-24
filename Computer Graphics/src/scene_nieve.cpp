@@ -1,4 +1,4 @@
-#include "scene_particle.h"
+#include "scene_nieve.h"
 #include "cgmath.h"
 #include "ifile.h"
 #include "mat3.h"
@@ -15,7 +15,7 @@
 
 
 
-void scene_particle::init()
+void scene_nieve::init()
 {
 	//Blending
 	glEnable(GL_BLEND);
@@ -24,17 +24,17 @@ void scene_particle::init()
 
 	//Para que no haya problema en mi camara
 	camPosition.z = 10;
-
+	
 	//Posicion
 	minPosition.x = -8.0;
 	maxPosition.x = 8.0;
 	minPosition.y = 9.0;
-	maxPosition.y = 25.0;
+	maxPosition.y = 20.0;
 	//Velocidad
-	minVelocidad.x = 0.0;
-	maxVelocidad.x = 1.0;
-	minVelocidad.y = 0.0;
-	maxVelocidad.y = 2.0;
+	minVelocidad.x = -4.0;
+	maxVelocidad.x = 4.0;
+	minVelocidad.y = 0.1;
+	maxVelocidad.y = 0.2;
 	//Ttl
 	minTtl = 5;
 	maxTtl = 10;
@@ -42,11 +42,11 @@ void scene_particle::init()
 	minAlpha = 0;
 	maxAlpha = 1;
 
-	a.y = -0.981;
+	a.y = -0.881;
 
 	//Inicalizar Sistema de Particulas
-	particleSystem.init(minPosition, maxPosition, minVelocidad,maxVelocidad,
-		minTtl,maxTtl,minAlpha,maxAlpha, a);
+	particleSystem.init(minPosition, maxPosition, minVelocidad, maxVelocidad,
+		minTtl, maxTtl, minAlpha, maxAlpha, a);
 
 
 
@@ -55,7 +55,7 @@ void scene_particle::init()
 
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
-	ilLoadImage("textures/gota.png");
+	ilLoadImage("textures/nieve.png");
 
 	glGenTextures(1, &texID);
 	glBindTexture(GL_TEXTURE_2D, texID);
@@ -107,16 +107,16 @@ void scene_particle::init()
 
 }
 
-void scene_particle::awake()
+void scene_nieve::awake()
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-void scene_particle::sleep()
+void scene_nieve::sleep()
 {
 }
 
-void scene_particle::mainLoop()
+void scene_nieve::mainLoop()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -162,7 +162,7 @@ void scene_particle::mainLoop()
 	glUseProgram(0);
 }
 
-void scene_particle::normalKeysDown(unsigned char key)
+void scene_nieve::normalKeysDown(unsigned char key)
 {
 	switch (key) {
 	case 'a':
@@ -180,7 +180,7 @@ void scene_particle::normalKeysDown(unsigned char key)
 	}
 }
 
-void scene_particle::resize(int width, int height)
+void scene_nieve::resize(int width, int height)
 {
 	glViewport(0, 0, width, height);
 	aspect = static_cast<float>(width) / static_cast<float>(height);

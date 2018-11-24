@@ -20,7 +20,7 @@ void ParticleSystem::init(cgmath::vec3 minPosition, cgmath::vec3 maxPosition, cg
 	myMinAlpha = minAlpha;
 	myMaxAlpha = maxAlpha;
 
-	for (int i = 0; i <= 100; i++)
+	for (int i = 0; i <= 300; i++)
 	{
 		float randomX = distribution(generator) * (myMaxPosition.x - myMinPosition.x) + myMinPosition.x;
 		float randomY = distribution(generator) * (myMaxPosition.y - myMinPosition.y) + myMinPosition.y;
@@ -42,7 +42,7 @@ void ParticleSystem::init(cgmath::vec3 minPosition, cgmath::vec3 maxPosition, cg
 
 void ParticleSystem::update(cgmath::vec3 camPositionn)
 {
-	for (int i = 0; i <= 100; i++)
+	for (int i = 0; i <= 300; i++)
 	{
 		float randomX = distribution(generator) * (myMaxPosition.x - myMinPosition.x) + myMinPosition.x;
 		float randomY = distribution(generator) * (myMaxPosition.y - myMinPosition.y) + myMinPosition.y;
@@ -77,7 +77,7 @@ void ParticleSystem::draw(GLuint shaderID)
 {
 
 	std::sort(particles.begin(), particles.end(), myfunction);
-	for (int i = 0; i <= 100; i++)
+	for (int i = 0; i <= 300; i++)
 	{
 		particles[i].draw(shaderID);
 	}

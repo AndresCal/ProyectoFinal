@@ -26,15 +26,15 @@ void scene_fuego::init()
 	camPosition.z = 10;
 
 	//Posicion
-	minPosition.x = -0.5;
-	maxPosition.x = 0.5;
+	minPosition.x = -0.1;
+	maxPosition.x = 0.1;
 	minPosition.y = -6.0;
 	maxPosition.y = -6.5;
 	//Velocidad
 	minVelocidad.x = 0.0;
-	maxVelocidad.x = 1.0;
+	maxVelocidad.x = 0.5;
 	minVelocidad.y = 0.0;
-	maxVelocidad.y = 0.5;
+	maxVelocidad.y = 1.0;
 	//Ttl
 	minTtl = 5;
 	maxTtl = 15;
@@ -110,7 +110,7 @@ void scene_fuego::init()
 
 void scene_fuego::awake()
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void scene_fuego::sleep()
@@ -161,6 +161,24 @@ void scene_fuego::mainLoop()
 
 
 	glUseProgram(0);
+}
+
+void scene_fuego::normalKeysDown(unsigned char key)
+{
+	switch (key) {
+	case 'a':
+		camPosition.x = camPosition.x - 0.05f;
+		break;
+	case 'd':
+		camPosition.x = camPosition.x + 0.05f;
+		break;
+	case 'w':
+		camPosition.z = camPosition.z - 0.05f;
+		break;
+	case 's':
+		camPosition.z = camPosition.z + 0.05f;
+		break;
+	}
 }
 
 void scene_fuego::resize(int width, int height)

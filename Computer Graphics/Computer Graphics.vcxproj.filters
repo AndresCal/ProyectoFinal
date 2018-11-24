@@ -51,6 +51,9 @@
     <ClCompile Include="src\scene_fuego.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene_nieve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\scene_manager.h">
@@ -89,6 +92,9 @@
     <ClInclude Include="include\scene_fuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\scene_nieve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\Default.frag" />
@@ -112,6 +118,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="textures\cerdo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\nieve.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

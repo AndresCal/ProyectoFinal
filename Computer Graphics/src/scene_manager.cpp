@@ -8,6 +8,7 @@
 #include "time.h"
 #include "scene_particle.h"
 #include "scene_fuego.h"
+#include "scene_nieve.h"
 
 std::vector<std::unique_ptr<scene>> scene_manager::sceneList;
 int scene_manager::currentScene = -1;
@@ -92,6 +93,10 @@ void scene_manager::initialize()
 
 	std::unique_ptr<scene> scene4(new scene_fuego);
 	sceneList.push_back(std::move(scene4));
+
+	std::unique_ptr<scene> scene5(new scene_nieve);
+	sceneList.push_back(std::move(scene5));
+
 
 	for (auto& s : sceneList)
 		s->init();
