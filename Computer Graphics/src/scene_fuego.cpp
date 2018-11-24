@@ -26,18 +26,18 @@ void scene_fuego::init()
 	camPosition.z = 10;
 
 	//Posicion
-	minPosition.x = -0.1;
-	maxPosition.x = 0.1;
+	minPosition.x = -0.05;
+	maxPosition.x = 0.05;
 	minPosition.y = -6.0;
-	maxPosition.y = -6.5;
+	maxPosition.y = -8.5;
 	//Velocidad
-	minVelocidad.x = 0.0;
+	minVelocidad.x = -0.5;
 	maxVelocidad.x = 0.5;
 	minVelocidad.y = 0.0;
-	maxVelocidad.y = 1.0;
+	maxVelocidad.y = 0.5;
 	//Ttl
-	minTtl = 5;
-	maxTtl = 15;
+	minTtl = 0;
+	maxTtl = 5;
 
 	a.y = .981;
 
@@ -110,7 +110,7 @@ void scene_fuego::init()
 
 void scene_fuego::awake()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void scene_fuego::sleep()
