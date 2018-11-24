@@ -1,4 +1,4 @@
-#include "scene_particle.h"
+#include "scene_fuego.h"
 #include "cgmath.h"
 #include "ifile.h"
 #include "mat3.h"
@@ -15,7 +15,7 @@
 
 
 
-void scene_particle::init()
+void scene_fuego::init()
 {
 	//Blending
 	glEnable(GL_BLEND);
@@ -26,10 +26,10 @@ void scene_particle::init()
 	camPosition.z = 10;
 
 	//Posicion
-	minPosition.x = -7.0;
-	maxPosition.x = 7.0;
-	minPosition.y = 7.0;
-	maxPosition.y = 10.0;
+	minPosition.x = -0.5;
+	maxPosition.x = 0.5;
+	minPosition.y = -6.0;
+	maxPosition.y = -6.5;
 	//Velocidad
 	minVelocidad.x = 0.0;
 	maxVelocidad.x = 1.0;
@@ -37,16 +37,17 @@ void scene_particle::init()
 	maxVelocidad.y = 0.5;
 	//Ttl
 	minTtl = 5;
-	maxTtl = 10;
+	maxTtl = 15;
+
+	a.y = .981;
+
 	//Alpha
 	minAlpha = 0;
 	maxAlpha = 1;
 
-	a.y = -0.981;
-
 	//Inicalizar Sistema de Particulas
-	particleSystem.init(minPosition, maxPosition, minVelocidad,maxVelocidad,
-		minTtl,maxTtl,minAlpha,maxAlpha, a);
+	particleSystem.init(minPosition, maxPosition, minVelocidad, maxVelocidad,
+		minTtl, maxTtl, minAlpha, maxAlpha, a);
 
 
 
@@ -55,7 +56,7 @@ void scene_particle::init()
 
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
-	ilLoadImage("textures/cerdo.png");
+	ilLoadImage("textures/fuego.png");
 
 	glGenTextures(1, &texID);
 	glBindTexture(GL_TEXTURE_2D, texID);
@@ -107,16 +108,16 @@ void scene_particle::init()
 
 }
 
-void scene_particle::awake()
+void scene_fuego::awake()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-void scene_particle::sleep()
+void scene_fuego::sleep()
 {
 }
 
-void scene_particle::mainLoop()
+void scene_fuego::mainLoop()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -162,7 +163,7 @@ void scene_particle::mainLoop()
 	glUseProgram(0);
 }
 
-void scene_particle::resize(int width, int height)
+void scene_fuego::resize(int width, int height)
 {
 	glViewport(0, 0, width, height);
 	aspect = static_cast<float>(width) / static_cast<float>(height);

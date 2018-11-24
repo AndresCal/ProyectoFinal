@@ -7,6 +7,7 @@
 #include "scene_cube.h"
 #include "time.h"
 #include "scene_particle.h"
+#include "scene_fuego.h"
 
 std::vector<std::unique_ptr<scene>> scene_manager::sceneList;
 int scene_manager::currentScene = -1;
@@ -88,6 +89,9 @@ void scene_manager::initialize()
 
 	std::unique_ptr<scene> scene3(new scene_particle);
 	sceneList.push_back(std::move(scene3));
+
+	std::unique_ptr<scene> scene4(new scene_fuego);
+	sceneList.push_back(std::move(scene4));
 
 	for (auto& s : sceneList)
 		s->init();

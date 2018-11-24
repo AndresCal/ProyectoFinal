@@ -11,14 +11,18 @@
 
 
 
+
+
 void Particle::init(cgmath::vec3 positions, cgmath::vec3 velocity, cgmath::vec3 a, float ttl, float alpha)
 {
-	q.init(); //Mandar a llamar init en particula 
+	q.init(); 
+	//Mandar a llamar init en particula 
 	 myPositions = positions;
 	 myVelocity = velocity;
 	 myA = a;
 	 myTtl = ttl;
 	 myAlpha = alpha;
+
 }
 
 void Particle::update()
@@ -41,6 +45,8 @@ void Particle::draw(GLuint shaderID)
 
 	GLuint model_location = glGetUniformLocation(shaderID, "mModelo");
 	glUniformMatrix4fv(model_location, 1, GL_FALSE, &model_matrix[0][0]);
+
+	//Location
 
 	q.Draw();
 }

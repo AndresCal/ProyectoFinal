@@ -1,5 +1,6 @@
 #include "ParticleSystem.h"
 #include "Particle.h"
+#include <algorithm>
 
 
 //Coleccion de particulas
@@ -7,54 +8,75 @@
 
 
 void ParticleSystem::init(cgmath::vec3 minPosition, cgmath::vec3 maxPosition, cgmath::vec3 minVelocidad, cgmath::vec3 maxVelocidad,
-	float minTtl, float maxTtl, float minAlpha, float maxAlpha)
+	float minTtl, float maxTtl, float minAlpha, float maxAlpha, cgmath::vec3 a)
 {	
-	for (int i = 0; i <= 1000; i++)
+	myMinPosition = minPosition;
+	myMaxPosition = maxPosition;
+	myMinVelocidad = minVelocidad;
+	myMaxVelocidad = maxVelocidad;
+	myA = a;
+	myMinTtl = minTtl;
+	myMaxTtl = maxTtl;
+	myMinAlpha = minAlpha;
+	myMaxAlpha = maxAlpha;
+
+	for (int i = 0; i <= 100; i++)
 	{
-		float randomX = distribution(generator) * (maxPosition.x - minPosition.x) + minPosition.x;
-		float randomY = distribution(generator) * (maxPosition.y - minPosition.y) + minPosition.y;
+		float randomX = distribution(generator) * (myMaxPosition.x - myMinPosition.x) + myMinPosition.x;
+		float randomY = distribution(generator) * (myMaxPosition.y - myMinPosition.y) + myMinPosition.y;
 		cgmath::vec3 positions(randomX, randomY, 0);
 
-		float randomXV = distribution(generator) * (maxVelocidad.x - minVelocidad.x) + minVelocidad.x;
-		float randomYV = distribution(generator) * (maxVelocidad.y - minVelocidad.y) + minVelocidad.y;
+		float randomXV = distribution(generator) * (myMaxVelocidad.x - myMinVelocidad.x) + myMinVelocidad.x;
+		float randomYV = distribution(generator) * (myMaxVelocidad.y - myMinVelocidad.y) + myMinVelocidad.y;
 		cgmath::vec3 velocity(randomXV, randomYV, 0);
 
-		cgmath::vec3 a(0, -0.981, 0);
-
-		float ttl = distribution(generator) * (maxTtl - minTtl) + minTtl;
-		float alpha = distribution(generator) * (maxAlpha - minAlpha) + minAlpha;
+		float ttl = distribution(generator) * (myMaxTtl - myMinTtl) + myMinTtl;
+	
+		float alpha = distribution(generator) * (myMaxAlpha - myMinAlpha) + myMinAlpha;
 
 		particles.push_back(Particle());
-		particles[i].init(positions, velocity, a, ttl, alpha);
+		particles[i].init(positions, velocity, myA, ttl, alpha);
 
 	}
-	
 }
 
-void ParticleSystem::update()
+void ParticleSystem::update(cgmath::vec3 camPositionn)
 {
-	for (int i = 0; i <= 1000; i++)
+	for (int i = 0; i <= 100; i++)
 	{
+		float randomX = distribution(generator) * (myMaxPosition.x - myMinPosition.x) + myMinPosition.x;
+		float randomY = distribution(generator) * (myMaxPosition.y - myMinPosition.y) + myMinPosition.y;
+		cgmath::vec3 positions(randomX, randomY, 0);
+
+		float randomXV = distribution(generator) * (myMaxVelocidad.x - myMinVelocidad.x) + myMinVelocidad.x;
+		float randomYV = distribution(generator) * (myMaxVelocidad.y - myMinVelocidad.y) + myMinVelocidad.y;
+		cgmath::vec3 velocity(randomXV, randomYV, 0);
+
+		float ttl = distribution(generator) * (myMaxTtl - myMinTtl) + myMinTtl;
+
+		float alpha = distribution(generator) * (myMaxAlpha - myMinAlpha) + myMinAlpha;
+
+		if (particles[i].myTtl <= 0) {
+			particles[i].init(positions, velocity, myA, ttl, alpha);
+		}
 		particles[i].update();
+		particles[i].camPosition = camPositionn;
+
 	}
 	//p.update();
-
-
 }
 
 bool myfunction(Particle i, Particle j)
 {
-
-
-
-	return (i < j);
+	cgmath::vec3 distancia = i.camPosition - i.myPositions;
+	cgmath::vec3 distancia2 = j.camPosition - j.myPositions;
+	return distancia.magnitude() < distancia2.magnitude();
 }
 
-void ParticleSystem::draw(GLuint shaderID, cgmath::vec3 camPosition)
+void ParticleSystem::draw(GLuint shaderID)
 {
 
-	std::sort(particles.begin() + 4, particles.end(), myfunction);
-	
+	std::sort(particles.begin(), particles.end(), myfunction);
 	for (int i = 0; i <= 100; i++)
 	{
 		particles[i].draw(shaderID);

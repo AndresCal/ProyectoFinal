@@ -3,10 +3,6 @@
 #include "ParticleSystem.h"
 #include "Particle.h"
 
-
-
-
-
 class scene_particle : public scene
 {
 	public:
@@ -17,6 +13,7 @@ class scene_particle : public scene
 		
 		cgmath::vec3 minPosition, maxPosition;
 		cgmath::vec3 minVelocidad, maxVelocidad;
+		cgmath::vec3 a;
 		float minTtl, maxTtl;
 		float minAlpha, maxAlpha;
 
@@ -36,7 +33,6 @@ class scene_particle : public scene
 		GLuint texID;
 
 		float aspect;
-
 };
 
 

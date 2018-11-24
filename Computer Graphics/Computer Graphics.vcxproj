@@ -50,6 +50,7 @@
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ParticleSystem.cpp" />
     <ClCompile Include="src\Quad.cpp" />
+    <ClCompile Include="src\scene_fuego.cpp" />
     <ClCompile Include="src\scene_particle.cpp" />
     <ClCompile Include="src\scene_cube.cpp" />
     <ClCompile Include="src\scene_fragment.cpp" />
@@ -70,6 +71,7 @@
   <ItemGroup>
     <ClInclude Include="include\scene_cube.h" />
     <ClInclude Include="include\scene_fragment.h" />
+    <ClInclude Include="include\scene_fuego.h" />
     <ClInclude Include="include\scene_vertex.h" />
     <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\scene_compatibility.h" />
@@ -92,7 +94,9 @@
     <None Include="shaders\PhongTexture.vert" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="textures\cerdo.png" />
     <Image Include="textures\crate.png" />
+    <Image Include="textures\fuego.png" />
     <Image Include="textures\gota.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
