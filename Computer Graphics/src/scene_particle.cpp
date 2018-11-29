@@ -30,14 +30,18 @@ void scene_particle::init()
 	maxPosition.x = 8.0;
 	minPosition.y = 9.0;
 	maxPosition.y = 25.0;
+	minPosition.z = -1.0;
+	maxPosition.z = 2.0;
 	//Velocidad
 	minVelocidad.x = 0.0;
 	maxVelocidad.x = 1.0;
 	minVelocidad.y = 0.0;
 	maxVelocidad.y = 2.0;
+	minVelocidad.z = 0.0;
+	maxVelocidad.z = 2.0;
 	//Ttl
 	minTtl = 5;
-	maxTtl = 10;
+	maxTtl = 15;
 	//Alpha
 	minAlpha = 0;
 	maxAlpha = 1;

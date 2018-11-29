@@ -8,5 +8,8 @@ uniform sampler2D DiffuseTexture;
 
 void main()
 {	
-	FragColor = texture2D(DiffuseTexture, InterpolatedTexCoord);
+	vec4 color = texture2D(DiffuseTexture, InterpolatedTexCoord);
+	if (color.a < 0.1) discard;
+
+	FragColor = color;
 }

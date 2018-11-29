@@ -20,15 +20,17 @@ void ParticleSystem::init(cgmath::vec3 minPosition, cgmath::vec3 maxPosition, cg
 	myMinAlpha = minAlpha;
 	myMaxAlpha = maxAlpha;
 
-	for (int i = 0; i <= 300; i++)
+	for (int i = 0; i <= 500; i++)
 	{
 		float randomX = distribution(generator) * (myMaxPosition.x - myMinPosition.x) + myMinPosition.x;
 		float randomY = distribution(generator) * (myMaxPosition.y - myMinPosition.y) + myMinPosition.y;
-		cgmath::vec3 positions(randomX, randomY, 0);
+		float randomZ = distribution(generator) * (myMaxPosition.z - myMinPosition.z) + myMinPosition.z;
+		cgmath::vec3 positions(randomX, randomY, randomZ);
 
 		float randomXV = distribution(generator) * (myMaxVelocidad.x - myMinVelocidad.x) + myMinVelocidad.x;
 		float randomYV = distribution(generator) * (myMaxVelocidad.y - myMinVelocidad.y) + myMinVelocidad.y;
-		cgmath::vec3 velocity(randomXV, randomYV, 0);
+		float randomZV = distribution(generator) * (myMaxVelocidad.z - myMinVelocidad.z) + myMinVelocidad.z;
+		cgmath::vec3 velocity(randomXV, randomYV, randomZV);
 
 		float ttl = distribution(generator) * (myMaxTtl - myMinTtl) + myMinTtl;
 	
@@ -42,15 +44,17 @@ void ParticleSystem::init(cgmath::vec3 minPosition, cgmath::vec3 maxPosition, cg
 
 void ParticleSystem::update(cgmath::vec3 camPositionn)
 {
-	for (int i = 0; i <= 300; i++)
+	for (int i = 0; i <= 500; i++)
 	{
 		float randomX = distribution(generator) * (myMaxPosition.x - myMinPosition.x) + myMinPosition.x;
 		float randomY = distribution(generator) * (myMaxPosition.y - myMinPosition.y) + myMinPosition.y;
-		cgmath::vec3 positions(randomX, randomY, 0);
+		float randomZ = distribution(generator) * (myMaxPosition.z - myMinPosition.z) + myMinPosition.z;
+		cgmath::vec3 positions(randomX, randomY, randomZ);
 
 		float randomXV = distribution(generator) * (myMaxVelocidad.x - myMinVelocidad.x) + myMinVelocidad.x;
 		float randomYV = distribution(generator) * (myMaxVelocidad.y - myMinVelocidad.y) + myMinVelocidad.y;
-		cgmath::vec3 velocity(randomXV, randomYV, 0);
+		float randomZV = distribution(generator) * (myMaxVelocidad.z - myMinVelocidad.z) + myMinVelocidad.z;
+		cgmath::vec3 velocity(randomXV, randomYV, randomZV);
 
 		float ttl = distribution(generator) * (myMaxTtl - myMinTtl) + myMinTtl;
 
@@ -77,7 +81,7 @@ void ParticleSystem::draw(GLuint shaderID)
 {
 
 	std::sort(particles.begin(), particles.end(), myfunction);
-	for (int i = 0; i <= 300; i++)
+	for (int i = 0; i <= 500; i++)
 	{
 		particles[i].draw(shaderID);
 	}

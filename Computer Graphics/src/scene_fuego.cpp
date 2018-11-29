@@ -30,11 +30,15 @@ void scene_fuego::init()
 	maxPosition.x = 0.05;
 	minPosition.y = -6.0;
 	maxPosition.y = -8.5;
+	minPosition.z = -2.0;
+	maxPosition.z = 2.0;
 	//Velocidad
 	minVelocidad.x = -0.5;
 	maxVelocidad.x = 0.5;
 	minVelocidad.y = 0.0;
 	maxVelocidad.y = 0.5;
+	minVelocidad.z = 0.0;
+	maxVelocidad.z = 0.5;
 	//Ttl
 	minTtl = 0;
 	maxTtl = 5;

@@ -30,11 +30,15 @@ void scene_nieve::init()
 	maxPosition.x = 8.0;
 	minPosition.y = 9.0;
 	maxPosition.y = 20.0;
+	minPosition.z = -2.0;
+	maxPosition.z = 1.0;
 	//Velocidad
 	minVelocidad.x = -4.0;
 	maxVelocidad.x = 4.0;
 	minVelocidad.y = 0.1;
 	maxVelocidad.y = 0.2;
+	minVelocidad.z = -0.5;
+	maxVelocidad.z = 0.5;
 	//Ttl
 	minTtl = 5;
 	maxTtl = 10;
